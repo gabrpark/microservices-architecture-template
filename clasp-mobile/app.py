@@ -2,13 +2,13 @@ from flask import Flask
 from flask_pymongo import PyMongo
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://mongodb:27017/claspMobileDB"
-mongo = PyMongo(app)
+# app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+# mongo = PyMongo(app)
 
 
 @app.route('/')
 def index():
-    return "Hello, World! from app1"
+    return "API for CLASP is running!"
 
 
 if __name__ == '__main__':

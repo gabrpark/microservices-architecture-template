@@ -24,7 +24,7 @@ services:
     ports:
       - "5002:5002"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/atdbtest
+      - MONGO_URI=mongodb://mongo:27017/adaptiveTextDB
     depends_on:
       - mongo
 
@@ -33,7 +33,7 @@ services:
     ports:
       - "5001:5001"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/cmdbtest
+      - MONGO_URI=mongodb://mongo:27017/claspMobileDB
     depends_on:
       - mongo
 
