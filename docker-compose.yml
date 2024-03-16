@@ -19,28 +19,32 @@
 
 version: '3'
 services:
-  adaptive-text:
-    build: ./adaptive-text
+  adaptive_text:
+    build: ./adaptive_text
     ports:
       - "5002:5002"
+    # environment:
+    #   - MONGO_URI=mongodb://mongo:27017
     environment:
-      - MONGO_URI=mongodb://mongo:27017/adaptiveTextDB
-    depends_on:
-      - mongo
+      - MONGO_URI=mongodb://host.docker.internal:27017
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # depends_on:
+    #   - mongo
 
-  clasp-mobile:
-    build: ./clasp-mobile
-    ports:
-      - "5001:5001"
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/claspMobileDB
-    depends_on:
-      - mongo
+    # clasp_mobile:
+    #   build: ./clasp_mobile
+    #   ports:
+    #     - "5001:5001"
+    #   environment:
+    #     - MONGO_URI=mongodb://mongo:27017/claspMobileDB
+    #   depends_on:
+    #     - mongo
 
-  mongo:
-    image: mongo
-    volumes:
-      - mongo-data:/data/db
+    #   mongo:
+    #     image: mongo
+    #     volumes:
+    #       - mongo-data:/data/db
 
-volumes:
-  mongo-data:
+    # volumes:
+    #   mongo-data:
