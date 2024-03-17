@@ -8,6 +8,9 @@ response_bp = Blueprint('response', __name__)
 @response_bp.route('/responses', methods=['GET'])
 # @authenticate
 def get_responses():
+    '''
+    Get all responses.
+    '''
     args = request.args.to_dict()
     response_model = ResponseModel()
     documents = response_model.find_all(args)
@@ -17,6 +20,9 @@ def get_responses():
 @response_bp.route('/responses', methods=['POST'])
 # @authenticate
 def create_response():
+    '''
+    Create a new response.
+    '''
     data = request.json
     response_model = ResponseModel()
     response_id = response_model.insert(data)

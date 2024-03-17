@@ -4,10 +4,10 @@ import os
 
 def get_db():
     # Get the MongoDB connection string from the environment variable
-    mongo_uri = os.environ.get('LOCAL_MONGO_URI')
+    mongo_uri = os.environ.get('MONGO_URI')
 
     if not mongo_uri:
-        raise ValueError('LOCAL_MONGO_URI environment variable is not set')
+        raise ValueError('MONGO_URI environment variable is not set')
 
     # Create a MongoClient instance
     client = MongoClient(mongo_uri)

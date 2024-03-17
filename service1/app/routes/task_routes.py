@@ -8,10 +8,13 @@ task_bp = Blueprint('task', __name__)
 @task_bp.route('/tasks', methods=['GET'])
 # @authenticate
 def get_tasks():
+    '''
+    Get all tasks.
+    '''
     args = request.args.to_dict()
     task_model = TaskModel()
     documents = task_model.find_all(args)
-    return jsonify(documents), 200
+    return jsonify(documents)
 
 # @task_bp.route('/tasks', methods=['POST'])
 # @authenticate

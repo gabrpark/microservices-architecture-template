@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.models import Text
+from app.models.text_model import TextModel
 # from app.utils.auth import authenticate
 
 text_bp = Blueprint('text', __name__)
@@ -18,8 +18,8 @@ text_bp = Blueprint('text', __name__)
 # @authenticate
 def get_texts():
     args = request.args.to_dict()
-    texts = Text.get_all(args)
-    return jsonify(texts), 200
+    texts = TextModel.get_all(args)
+    return jsonify(texts)
 
 
 # @text_bp.route('/texts/<text_id>', methods=['GET'])
