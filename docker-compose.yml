@@ -32,12 +32,14 @@ services:
     # depends_on:
     #   - mongo
 
-    # clasp_mobile:
-    #   build: ./clasp_mobile
-    #   ports:
-    #     - "5001:5001"
-    #   environment:
-    #     - MONGO_URI=mongodb://mongo:27017/claspMobileDB
+  clasp_mobile:
+    build: ./clasp_mobile
+    ports:
+      - "5001:5001"
+    environment:
+      - MONGO_URI=mongodb://host.docker.internal:27017
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     #   depends_on:
     #     - mongo
 
