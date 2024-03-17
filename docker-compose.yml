@@ -26,7 +26,8 @@ services:
     # environment:
     #   - MONGO_URI=mongodb://mongo:27017
     environment:
-      - MONGO_URI=mongodb://host.docker.internal:27017
+      - LOCAL_MONGO_URI=mongodb://host.docker.internal:27017
+      - MONGO_DB_NAME=adaptiveTextDB
     extra_hosts:
       - "host.docker.internal:host-gateway"
     # depends_on:
@@ -37,7 +38,8 @@ services:
     ports:
       - "5001:5001"
     environment:
-      - MONGO_URI=mongodb://host.docker.internal:27017
+      - LOCAL_MONGO_URI=mongodb://host.docker.internal:27017
+      - MONGO_DB_NAME=claspMobileDB
     extra_hosts:
       - "host.docker.internal:host-gateway"
     #   depends_on:

@@ -1,10 +1,11 @@
-from pymongo import MongoClient
 import os
+from app.utils.db import get_db
+from pymongo import MongoClient
 
 
 class ResponseModel:
     def __init__(self):
-        self.db = MongoClient(os.environ.get("MONGO_URI")).claspMobileDB
+        self.db = get_db()
         self.collection = self.db['responses']
 
     def find_all(self, query):

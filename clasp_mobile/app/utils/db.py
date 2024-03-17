@@ -1,26 +1,24 @@
-# import firebase_admin
-# from firebase_admin import credentials, auth
-#
-# firebase_config = {
-#     "type": os.environ.get("FIREBASE_TYPE"),
-#     "project_id": os.environ.get("FIREBASE_PROJECT_ID"),
-#     "private_key_id": os.environ.get("FIREBASE_PRIVATE_KEY_ID"),
-#     "private_key": os.environ.get("FIREBASE_PRIVATE_KEY").replace(r'\n', '\n'),
-#     "client_email": os.environ.get("FIREBASE_CLIENT_EMAIL"),
-#     "client_id": os.environ.get("FIREBASE_CLIENT_ID"),
-#     "auth_uri": os.environ.get("FIREBASE_AUTH_URI"),
-#     "token_uri": os.environ.get("FIREBASE_TOKEN_URI"),
-#     "auth_provider_x509_cert_url": os.environ.get("FIREBASE_AUTH_PROVIDER_X509_CERT_URL"),
-#     "client_x509_cert_url": os.environ.get("FIREBASE_CLIENT_X509_CERT_URL"),
-#     "universe_domain": os.environ.get("FIREBASE_UNIVERSE_DOMAIN")
-# }
+from pymongo import MongoClient
+import os
 
-# # Initialize Firebase Admin
-# cred = credentials.Certificate(firebase_config)
-# firebase_admin.initialize_app(cred)
 
-# from pymongo import MongoClient
-# import os
+def get_db():
+    # Get the MongoDB connection string from the environment variable
+    mongo_uri = os.environ.get('LOCAL_MONGO_URI')
 
-# client = MongoClient(os.environ.get("NGROK_MONGO_URL"))
-# db = client.claspMobileDB
+    if not mongo_uri:
+        raise ValueError('LOCAL_MONGO_URI environment variable is not set')
+
+    # Create a MongoClient instance
+    client = MongoClient(mongo_uri)
+
+    # Get the database name from the environment variable
+    db_name = os.environ.get('MONGO_DB_NAME')
+
+    if not db_name:
+        raise ValueError('MONGO_DB_NAME environment variable is not set')
+
+    # Get the database instance
+    db = client[db_name]
+
+    return db

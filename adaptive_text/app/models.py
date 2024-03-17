@@ -1,11 +1,9 @@
 import os
 from bson import ObjectId
-# from app.utils.db import db
+from app.utils.db import get_db
 from pymongo import MongoClient
 
-# client = MongoClient('mongodb://localhost:27017')
-client = MongoClient(os.environ.get("MONGO_URI"))
-db = client['adaptiveTextDB']
+db = get_db()
 collection = db['sourceTexts']
 
 
@@ -31,14 +29,14 @@ class Text:
         document = collection.find_one({'_id': ObjectId(text_id)}, {'_id': 0})
         return document
 
-    def update(self):
-        collection.update_one({'_id': ObjectId(self._id)}, {
-                              '$set': self.to_dict()})
+    # def update(self):
+    #     collection.update_one({'_id': ObjectId(self._id)}, {
+    #                           '$set': self.to_dict()})
 
-    @staticmethod
-    def delete_by_id(text_id):
-        result = collection.delete_one({'_id': ObjectId(text_id)})
-        return result
+    # @staticmethod
+    # def delete_by_id(text_id):
+    #     result = collection.delete_one({'_id': ObjectId(text_id)})
+    #     return result
 
     def to_dict(self):
         return {'title': self.title, 'content': self.content, 'url': self.url, '_id': self._id}

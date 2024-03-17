@@ -5,11 +5,6 @@ from app.models.task_model import TaskModel
 task_bp = Blueprint('task', __name__)
 
 
-@task_bp.route('/')
-def index():
-    return "API for ClaSP Mobile is running!"
-
-
 @task_bp.route('/tasks', methods=['GET'])
 # @authenticate
 def get_tasks():

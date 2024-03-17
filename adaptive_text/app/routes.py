@@ -5,13 +5,13 @@ from app.models import Text
 text_bp = Blueprint('text', __name__)
 
 
-@text_bp.route('/texts', methods=['POST'])
-# @authenticate
-def create_text():
-    data = request.json
-    text = Text(data['title'], data['content'], data['completed'])
-    result = text.save()
-    return jsonify({'id': str(result.inserted_id)}), 201
+# @text_bp.route('/texts', methods=['POST'])
+# # @authenticate
+# def create_text():
+#     data = request.json
+#     text = Text(data['title'], data['content'], data['completed'])
+#     result = text.save()
+#     return jsonify({'id': str(result.inserted_id)}), 201
 
 
 @text_bp.route('/texts', methods=['GET'])
