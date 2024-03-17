@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.models.task_model import Task
+from app.models.task_model import TaskModel
 # from app.utils.auth import authenticate
 
 task_bp = Blueprint('task', __name__)
@@ -14,7 +14,7 @@ def index():
 # @authenticate
 def get_tasks():
     args = request.args.to_dict()
-    task_model = Task()
+    task_model = TaskModel()
     documents = task_model.find_all(args)
     return jsonify(documents), 200
 
@@ -22,6 +22,6 @@ def get_tasks():
 # @authenticate
 # def create_task():
 #     data = request.json
-#     task_model = Task()
+#     task_model = TaskModel()
 #     task_id = task_model.insert(data)
 #     return {'id': task_id}, 201
